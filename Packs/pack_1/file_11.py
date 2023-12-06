@@ -1,3 +1,10 @@
 print('Это модуль', __name__)
 
-a: int = 42
+from .file_12 import num
+
+
+def some_func(n: int) -> float:
+    return (n + n) / n ** n
+
+
+result = some_func(num)
