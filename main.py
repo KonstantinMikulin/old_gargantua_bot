@@ -1,47 +1,11 @@
-import json
+import os
+from environs import Env
 
-from aiogram import Bot, Dispatcher, F
-from aiogram.types import Message
-from aiogram.filters import Command, BaseFilter
+env = Env()
+env.read_env()
 
-from config.config import TOKEN, ADMIN_IDS
+bot_token = env('BOT_TOKEN')
 
-BOT_TOKEN = TOKEN
+print(bot_token)
 
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
-
-
-class NumbersInMessage(BaseFilter):
-    async def __call__(self, message: Message) -> bool | dict[str, list[int]]:
-        numbers = []
-        for word in message.text.split():
-            normalized_word = word.replace('.', '').replace(',', '').strip()
-            if normalized_word.isdigit():
-                numbers.append(int(normalized_word))
-
-        if numbers:
-            return {'numbers': numbers}
-
-        return False
-
-
-@dp.message(Command(commands='start'))
-async def process_start_cmd(message: Message):
-    # print(message.model_dump_json(indent=4, exclude_none=True))
-    # print(message.__dict__)
-    await message.answer(text='This is command "start"')
-
-
-@dp.message(F.text.lower().startswith('найди числа'), NumbersInMessage())
-async def process_if_numbers(message: Message, numbers: list[int]):
-    await message.answer(text=f'Нашел: {", ".join(str(num) for num in numbers)}')
-
-
-@dp.message(F.text.lower().startswith('найди числа'))
-async def process_if_not_numbers(message: Message):
-    await message.answer(text='Не нашел что-то :(')
-
-
-if __name__ == '__main__':
-    dp.run_polling(bot)
+print(os.getenv('BOT_TOKEN'))
