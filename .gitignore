@@ -2,4 +2,4 @@
 config/
 file.json
 __pycache__
-config_data/.env
+.env
