@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from environs import Env
 
 
+# Database config
 @dataclass
 class DatabaseConfig:
     database: str
@@ -10,23 +11,23 @@ class DatabaseConfig:
     db_password: str
 
 
+# Class for bot config
 @dataclass
 class TgBot:
     token: str
     admin_ids: int
 
 
+# Main config
 @dataclass
 class Config:
     tg_bot: TgBot
-    db: DatabaseConfig
+    db: DatabaseConfig | None = None
 
 
+# Func for loading all necessary config
 def load_config(path: str | None = None) -> Config:
     env: Env = Env()
     env.read_env(path)
 
-    return Config(tg_bot=TgBot(token=env('BOT_TOKEN'), admin_ids=int(env('ADMIN_IDS'))),
-                  db=DatabaseConfig(database=env('DATABASE'), db_host=env('DB_HOST'),
-                                    db_user=env('DB_USER'), db_password=env('DB_PASSWORD'))
-                  )
+    return Config(tg_bot=TgBot(token=env('BOT_TOKEN'), admin_ids=int(env('ADMIN_IDS'))))
