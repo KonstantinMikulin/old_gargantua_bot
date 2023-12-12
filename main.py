@@ -12,7 +12,10 @@ dp = Dispatcher()
 button_1 = KeyboardButton(text='Собак 🦮')
 button_2 = KeyboardButton(text='Огурцов 🥒')
 
-keyboard = ReplyKeyboardMarkup(keyboard=[[button_1, button_2]])
+keyboard = ReplyKeyboardMarkup(keyboard=[[button_1, button_2]],
+                               resize_keyboard=True,
+                               one_time_keyboard=True
+                               )
 
 
 @dp.message(CommandStart())
@@ -24,15 +27,13 @@ async def process_start_cmd(message: Message):
 
 @dp.message(F.text == 'Собак 🦮')
 async def process_dog_answer(message: Message):
-    await message.answer(text='Да, собак',
-                         reply_markup=ReplyKeyboardRemove()
+    await message.answer(text='Да, собак'
                          )
 
 
 @dp.message(F.text == 'Огурцов 🥒')
 async def process_dog_answer(message: Message):
-    await message.answer(text='Конечно, огурцов',
-                         reply_markup=ReplyKeyboardRemove()
+    await message.answer(text='Конечно, огурцов'
                          )
 
 if __name__ == '__main__':
