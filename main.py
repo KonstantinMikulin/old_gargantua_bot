@@ -1,11 +1,39 @@
-import os
-from environs import Env
+from aiogram import Bot, Dispatcher, F
+from aiogram.filters import CommandStart
+from aiogram.types import KeyboardButton, Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
 
-env = Env()
-env.read_env()
+from config_data.config import Config, load_config
 
-bot_token = env('BOT_TOKEN')
+config: Config = load_config()
 
-print(bot_token)
+bot = Bot(token=config.tg_bot.token)
+dp = Dispatcher()
 
-print(os.getenv('BOT_TOKEN'))
+button_1 = KeyboardButton(text='Собак 🦮')
+button_2 = KeyboardButton(text='Огурцов 🥒')
+
+keyboard = ReplyKeyboardMarkup(keyboard=[[button_1, button_2]])
+
+
+@dp.message(CommandStart())
+async def process_start_cmd(message: Message):
+    await message.answer(text='Чего кошки боятся больше?',
+                         reply_markup=keyboard
+                         )
+
+
+@dp.message(F.text == 'Собак 🦮')
+async def process_dog_answer(message: Message):
+    await message.answer(text='Да, собак',
+                         reply_markup=ReplyKeyboardRemove()
+                         )
+
+
+@dp.message(F.text == 'Огурцов 🥒')
+async def process_dog_answer(message: Message):
+    await message.answer(text='Конечно, огурцов',
+                         reply_markup=ReplyKeyboardRemove()
+                         )
+
+if __name__ == '__main__':
+    dp.run_polling(bot)
