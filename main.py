@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import CommandStart
 from aiogram.types import KeyboardButton, Message, ReplyKeyboardMarkup, KeyboardButtonPollType
+from aiogram.types.web_app_info import WebAppInfo
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 from config_data.config import Config, load_config
@@ -27,6 +28,16 @@ poll_btn = KeyboardButton(
     request_poll=KeyboardButtonPollType()
 )
 
+web_app_btn = KeyboardButton(
+    text='Start web app',
+    web_app=WebAppInfo(url='https://www.youtube.com/')
+)
+
+web_app_keyboard = ReplyKeyboardMarkup(
+    keyboard=[[web_app_btn]],
+    resize_keyboard=True
+)
+
 kb_builder.row(contact_button, geo_btn, poll_btn, width=1)
 keyboard: ReplyKeyboardMarkup = kb_builder.as_markup(
     resize_keyboard=True,
@@ -38,7 +49,7 @@ keyboard: ReplyKeyboardMarkup = kb_builder.as_markup(
 async def process_start_cmd(message: Message):
     await message.answer(
         text='Here you go',
-        reply_markup=keyboard
+        reply_markup=web_app_keyboard
     )
 
 
