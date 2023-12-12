@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import CommandStart
 from aiogram.types import KeyboardButton, Message, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 from config_data.config import Config, load_config
 
@@ -9,19 +10,18 @@ config: Config = load_config()
 bot = Bot(token=config.tg_bot.token)
 dp = Dispatcher()
 
-button_1 = KeyboardButton(text='Собак 🦮')
-button_2 = KeyboardButton(text='Огурцов 🥒')
+kb_builder = ReplyKeyboardBuilder()
 
-keyboard = ReplyKeyboardMarkup(keyboard=[[button_1, button_2]],
-                               resize_keyboard=True,
-                               one_time_keyboard=True
-                               )
+buttons: list[KeyboardButton] = [KeyboardButton(text=f'{i + 1}') for i in range(10)]
+
+kb_builder.add(*buttons)
+kb_builder.adjust(1, 2, 4)
 
 
 @dp.message(CommandStart())
 async def process_start_cmd(message: Message):
     await message.answer(text='Чего кошки боятся больше?',
-                         reply_markup=keyboard
+                         reply_markup=kb_builder.as_markup(resize_keyboard=True)
                          )
 
 
