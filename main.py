@@ -17,11 +17,13 @@ buttons: list[KeyboardButton] = [KeyboardButton(text=f'{i + 1}') for i in range(
 kb_builder.add(*buttons)
 kb_builder.adjust(1, 2, 4)
 
+keyboard = kb_builder.as_markup(resize_keyboard=True)
+
 
 @dp.message(CommandStart())
 async def process_start_cmd(message: Message):
     await message.answer(text='Чего кошки боятся больше?',
-                         reply_markup=kb_builder.as_markup(resize_keyboard=True)
+                         reply_markup=keyboard
                          )
 
 
