@@ -13,35 +13,15 @@ dp = Dispatcher()
 
 kb_builder = ReplyKeyboardBuilder()
 
-contact_button = KeyboardButton(
-    text='Send your number',
-    request_contact=True
-)
+button_1 = KeyboardButton(text='Button one!')
+button_2 = KeyboardButton(text='Button two!')
 
-geo_btn = KeyboardButton(
-    text='Send you location',
-    request_location=True
-)
 
-poll_btn = KeyboardButton(
-    text='Create poll',
-    request_poll=KeyboardButtonPollType()
-)
-
-web_app_btn = KeyboardButton(
-    text='Start web app',
-    web_app=WebAppInfo(url='https://www.youtube.com/')
-)
-
-web_app_keyboard = ReplyKeyboardMarkup(
-    keyboard=[[web_app_btn]],
-    resize_keyboard=True
-)
-
-kb_builder.row(contact_button, geo_btn, poll_btn, width=1)
+kb_builder.row(button_1, button_2, width=2)
 keyboard: ReplyKeyboardMarkup = kb_builder.as_markup(
     resize_keyboard=True,
-    one_time_keyboard=True
+    one_time_keyboard=True,
+    input_field_placeholder='Choose you answer'
 )
 
 
@@ -49,7 +29,7 @@ keyboard: ReplyKeyboardMarkup = kb_builder.as_markup(
 async def process_start_cmd(message: Message):
     await message.answer(
         text='Here you go',
-        reply_markup=web_app_keyboard
+        reply_markup=keyboard
     )
 
 
