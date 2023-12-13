@@ -14,3 +14,8 @@ async def process_start_cmd(message: Message):
 @router.message(Command(commands='help'))
 async def process_help_cmd(message: Message):
     await message.answer(text=LEXICON_RU['/help'])
+
+
+@router.message(Command(commands='profile'))
+async def process_profile_command(message: Message):
+    await message.answer(text=LEXICON_RU['/profile'])
