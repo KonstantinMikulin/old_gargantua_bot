@@ -9,5 +9,6 @@ LEXICON_RU: dict[str, str] = {
              '/cancel - отмена всего',
     '/profile': 'Как тебя зовут?\n'
                 'Сколько тебе лет?\n'
-                'Твой пол?'
+                'Твой пол?',
+    'other_answers': 'I do not understand'
 }
