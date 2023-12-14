@@ -4,7 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher
 
 from config_data.config import Config, load_config
-from handlers import user_handlers, other_handlers
+from handlers import admin_handlers, user_handlers, other_handlers
 from keyboards.set_menu import set_main_menu
 
 logger = logging.getLogger(__name__)
@@ -21,6 +21,7 @@ async def main():
     bot = Bot(token=config.tg_bot.token)
     dp = Dispatcher()
 
+    dp.include_router(admin_handlers.router)
     dp.include_router(user_handlers.router)
     dp.include_router(other_handlers.router)
 
