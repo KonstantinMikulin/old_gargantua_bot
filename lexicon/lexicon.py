@@ -12,3 +12,8 @@ LEXICON_RU: dict[str, str] = {
                 'Твой пол?',
     'other_answers': 'I do not understand'
 }
+
+LEXICON_COMMANDS_RU: dict[str, str] = {
+    '/help': 'How this bot works',
+    '/profile': 'Setup you profile',
+}
