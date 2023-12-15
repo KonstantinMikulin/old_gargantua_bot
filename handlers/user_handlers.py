@@ -44,15 +44,19 @@ async def process_url_command(message: Message):
 
 @router.callback_query(F.data == 'button_1 pressed')
 async def process_button_1_press(callback: CallbackQuery):
-    await callback.message.edit_text(
-        text='Button 1 was pressed',
-        reply_markup=callback.message.reply_markup
-    )
+    if callback.message.text != 'Button 1 was pressed':
+        await callback.message.edit_text(
+            text='Button 1 was pressed',
+            reply_markup=callback.message.reply_markup
+        )
+    await callback.answer()
 
 
 @router.callback_query(F.data == 'button_2 pressed')
 async def process_button_1_press(callback: CallbackQuery):
-    await callback.message.edit_text(
-        text='Button 2 was pressed',
-        reply_markup=callback.message.reply_markup
-    )
+    if callback.message.text != 'Button 2 was pressed':
+        await callback.message.edit_text(
+            text='Button 2 was pressed',
+            reply_markup=callback.message.reply_markup
+        )
+    await callback.answer()
