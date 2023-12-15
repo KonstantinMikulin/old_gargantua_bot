@@ -39,3 +39,18 @@ user_button = InlineKeyboardButton(
 url_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[[url_button_1], [url_button_2], [channel_button], [user_button]]
 )
+
+# Callback buttons
+callback_button_1 = InlineKeyboardButton(
+    text='BUTTON 1',
+    callback_data='button_1 pressed'
+)
+
+callback_button_2 = InlineKeyboardButton(
+    text='BUTTON 2',
+    callback_data='button_2 pressed'
+)
+
+callback_keyboard = InlineKeyboardMarkup(
+    inline_keyboard=[[callback_button_1], [callback_button_2]]
+)
