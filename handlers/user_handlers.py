@@ -3,8 +3,7 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import Message, ReplyKeyboardRemove
 
 from lexicon.lexicon import LEXICON_RU
-from keyboards.keyboards import yes_no_keyboard
-
+from keyboards.keyboards import yes_no_keyboard, url_keyboard
 router = Router()
 
 
@@ -31,4 +30,11 @@ async def process_yes_no(message: Message):
     await message.answer(
         text='OK',
         reply_markup=ReplyKeyboardRemove()
+    )
+
+@router.message(Command(commands='url'))
+async def process_url_command(message: Message):
+    await message.answer(
+        text='Here are your links',
+        reply_markup=url_keyboard
     )
