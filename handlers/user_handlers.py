@@ -42,8 +42,17 @@ async def process_url_command(message: Message):
     # print(message.model_dump_json(indent=4, exclude_none=True))
 
 
-@router.callback_query(F.data.in_(['button_1 pressed', 'button_2 pressed']))
-async def process_callback(callback: CallbackQuery):
-    await callback.answer(text='We have your callback')
-    print(callback.model_dump_json(indent=4, exclude_none=True))
+@router.callback_query(F.data == 'button_1 pressed')
+async def process_button_1_press(callback: CallbackQuery):
+    await callback.message.edit_text(
+        text='Button 1 was pressed',
+        reply_markup=callback.message.reply_markup
+    )
 
+
+@router.callback_query(F.data == 'button_2 pressed')
+async def process_button_1_press(callback: CallbackQuery):
+    await callback.message.edit_text(
+        text='Button 2 was pressed',
+        reply_markup=callback.message.reply_markup
+    )
