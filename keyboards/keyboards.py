@@ -20,11 +20,17 @@ url_button_1 = InlineKeyboardButton(
     text='Watch some',
     url='https://www.youtube.com/'
 )
+
 url_button_2 = InlineKeyboardButton(
     text='Buy some',
     url='https://www.avito.ru/'
 )
 
+channel_button = InlineKeyboardButton(
+    text='Read some',
+    url=f'https://t.me/redakciya_channel'
+)
+
 url_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[[url_button_1], [url_button_2]]
+    inline_keyboard=[[url_button_1], [url_button_2], [channel_button]]
 )
