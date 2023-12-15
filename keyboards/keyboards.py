@@ -31,6 +31,11 @@ channel_button = InlineKeyboardButton(
     url=f'https://t.me/redakciya_channel'
 )
 
+user_button = InlineKeyboardButton(
+    text='Contact dev',
+    url=f'tg://user?id=<user_ID>'
+)
+
 url_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[[url_button_1], [url_button_2], [channel_button]]
+    inline_keyboard=[[url_button_1], [url_button_2], [channel_button], [user_button]]
 )
