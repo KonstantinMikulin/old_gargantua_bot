@@ -1,6 +1,6 @@
 from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton,
                            InlineKeyboardButton, InlineKeyboardMarkup)
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 # Reply keyboard buttons
 button_yes = KeyboardButton(text='Yes')
@@ -16,29 +16,14 @@ yes_no_keyboard: ReplyKeyboardMarkup = yes_no_kb_builder.as_markup(
 )
 
 # Inline keyboard buttons
-url_button_1 = InlineKeyboardButton(
-    text='Watch some',
-    url='https://www.youtube.com/'
-)
 
-url_button_2 = InlineKeyboardButton(
-    text='Buy some',
-    url='https://www.avito.ru/'
-)
+inline_button_1 = InlineKeyboardButton(text='Вес', callback_data='one')
+inline_button_2 = InlineKeyboardButton(text='Замеры', callback_data='two')
 
-channel_button = InlineKeyboardButton(
-    text='Read some',
-    url=f'https://t.me/redakciya_channel'
-)
+inline_kb_builder = InlineKeyboardBuilder()
+inline_kb_builder.row(inline_button_1, inline_button_2)
 
-user_button = InlineKeyboardButton(
-    text='Contact dev',
-    url=f'tg://user?id=<user_ID>'
-)
-
-url_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[[url_button_1], [url_button_2], [channel_button], [user_button]]
-)
+inline_keyboard: InlineKeyboardMarkup = inline_kb_builder.as_markup()
 
 # Callback buttons
 callback_button_1 = InlineKeyboardButton(

@@ -3,7 +3,8 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import Message, ReplyKeyboardRemove, CallbackQuery
 
 from lexicon.lexicon import LEXICON_RU
-from keyboards.keyboards import yes_no_keyboard, url_keyboard, callback_keyboard
+from keyboards.keyboards import yes_no_keyboard, callback_keyboard, inline_keyboard
+
 router = Router()
 
 
@@ -22,6 +23,14 @@ async def process_profile_command(message: Message):
     await message.answer(
         text=LEXICON_RU['/profile'],
         reply_markup=yes_no_keyboard
+    )
+
+
+@router.message(Command(commands='record'))
+async def process_record_command(message: Message):
+    await message.answer(
+        text='Какие значение записать?',
+        reply_markup=inline_keyboard
     )
 
 
