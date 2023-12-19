@@ -10,19 +10,19 @@ router = Router()
 
 @router.message(CommandStart())
 async def process_start_cmd(message: Message):
-    await message.answer(text=LEXICON_RU['/start'],
+    await message.answer(text=LEXICON_RU[message.text],
                          reply_markup=create_keyboard(2, 3, 10, 45, 12, 11, 1, 9))
 
 
 @router.message(Command(commands='help'))
 async def process_help_cmd(message: Message):
-    await message.answer(text=LEXICON_RU['/help'])
+    await message.answer(text=LEXICON_RU[message.text])
 
 
 @router.message(Command(commands='profile'))
 async def process_profile_command(message: Message):
     await message.answer(
-        text=LEXICON_RU['/profile'],
+        text=LEXICON_RU[message.text],
         reply_markup=yes_no_keyboard
     )
 
