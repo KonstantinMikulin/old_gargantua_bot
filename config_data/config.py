@@ -15,14 +15,14 @@ class DatabaseConfig:
 @dataclass
 class TgBot:
     token: str
-    admin_ids: int
+    # admin_ids: int
 
 
 # Main config
 @dataclass
 class Config:
     tg_bot: TgBot
-    db: DatabaseConfig | None = None
+    # db: DatabaseConfig | None = None
 
 
 # Func for loading all necessary config
@@ -30,4 +30,4 @@ def load_config(path: str | None = None) -> Config:
     env: Env = Env()
     env.read_env(path)
 
-    return Config(tg_bot=TgBot(token=env('BOT_TOKEN'), admin_ids=int(env('ADMIN_IDS'))))
+    return Config(tg_bot=TgBot(token=env('BOT_TOKEN')))
