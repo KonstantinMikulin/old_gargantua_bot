@@ -39,3 +39,16 @@ callback_button_2 = InlineKeyboardButton(
 callback_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[[callback_button_1], [callback_button_2]]
 )
+
+
+# function for creating keyboard
+def create_keyboard(*args: int):
+    kb_builder = InlineKeyboardBuilder()
+
+    buttons = []
+    for button in sorted(args):
+        buttons.append(InlineKeyboardButton(text=str(button), callback_data=str(button)))
+
+    kb_builder.row(*buttons, width=3)
+
+    return kb_builder.as_markup()
