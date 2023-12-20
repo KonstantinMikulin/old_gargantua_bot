@@ -10,8 +10,7 @@ router = Router()
 
 @router.message(CommandStart())
 async def process_start_cmd(message: Message):
-    await message.answer(text=LEXICON_RU[message.text],
-                         reply_markup=create_keyboard(2, 3, 10, 45, 12, 11, 1, 9))
+    await message.answer(text=LEXICON_RU[message.text])
 
 
 @router.message(Command(commands='help'))
