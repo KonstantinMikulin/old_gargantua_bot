@@ -6,7 +6,7 @@ LEXICON_RU: dict[str, str] = {
              '/start - запустить бот\n'
              '/help - список команд\n',
     'other_answers': 'Я понимаю не все сообщения.\n'
-                     'Список доступных команд - /help'
+                     '/help - cписок доступных команд'
 }
 
 LEXICON_COMMANDS_RU: dict[str, str] = {

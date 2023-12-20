@@ -9,4 +9,3 @@ router = Router()
 @router.message()
 async def process_any(message: Message):
     await message.answer(text=LEXICON_RU['other_answers'])
-    await message.answer(text=LEXICON_RU['/help'])
