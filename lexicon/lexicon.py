@@ -12,3 +12,9 @@ LEXICON_RU: dict[str, str] = {
 LEXICON_COMMANDS_RU: dict[str, str] = {
     '/help': 'How this bot works'
 }
+
+LEXICON_CALLBACK: dict[str, str] = {
+    'one': 'I cant remember anything',
+    'two': 'Or are you unforgiven too?',
+    'three': 'When it\'s me I can\'t forgive?'
+}
