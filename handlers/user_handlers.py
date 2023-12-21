@@ -24,23 +24,7 @@ async def process_profile_command(message: Message) -> None:
     pass
 
 
-@router.callback_query(F.data == 'one')
-async def process_one_cb(callback: CallbackQuery) -> None:
-    await callback.message.edit_text(
-        text=LEXICON_CALLBACK[callback.data],
-        reply_markup=inline_keyboard
-    )
-
-
-@router.callback_query(F.data == 'two')
-async def process_one_cb(callback: CallbackQuery) -> None:
-    await callback.message.edit_text(
-        text=LEXICON_CALLBACK[callback.data],
-        reply_markup=inline_keyboard
-    )
-
-
-@router.callback_query(F.data == 'three')
+@router.callback_query(F.data.in_({'one', 'two', 'three'}))
 async def process_one_cb(callback: CallbackQuery) -> None:
     await callback.message.edit_text(
         text=LEXICON_CALLBACK[callback.data],
