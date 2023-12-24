@@ -22,5 +22,6 @@ LEXICON_FSM: dict[str, str] = {
     'name': 'What is your name?',
     'age': 'How old are you?',
     'gender': 'What is your gender?',
-    'weight': 'What is your current weight?'
+    'weight': 'What is your current weight?',
+    'profile_done': 'Thank you. Yor profile was updated'
 }
