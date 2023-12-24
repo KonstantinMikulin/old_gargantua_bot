@@ -4,7 +4,7 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.state import default_state
 from aiogram.fsm.context import FSMContext
 
-from lexicon.lexicon import LEXICON_RU, LEXICON_CALLBACK
+from lexicon.lexicon import LEXICON_RU, LEXICON_FSM
 from keyboards.keyboards import inline_keyboard
 from fsm.fsm import FSMFillForm
 
@@ -37,7 +37,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext) -> N
 @router.message(StateFilter(FSMFillForm.fill_name), F.text.isalpha())
 async def process_name_sent(message: Message, state: FSMContext) -> None:
     await state.update_data(name=message.text)
-    await message.answer(text='How old are you?')
+    await message.answer(text=LEXICON_FSM['age'])
     await state.set_state(FSMFillForm.fill_age)
 
 

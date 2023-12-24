@@ -18,8 +18,8 @@ LEXICON_COMMANDS_RU: dict[str, str] = {
     '/help': 'How this bot works'
 }
 
-LEXICON_CALLBACK: dict[str, str] = {
-    'name': 'How old are you?',
-    'age': 'What is your current weight?',
-    'weight': 'Thank you. Your profile was created'
+LEXICON_FSM: dict[str, str] = {
+    'name': 'What is your name?',
+    'age': 'How old are you?',
+    'weight': 'What is your current weight?'
 }
