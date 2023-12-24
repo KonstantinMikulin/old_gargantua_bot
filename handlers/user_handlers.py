@@ -49,3 +49,14 @@ async def process_age_sent(message: Message, state: FSMContext) -> None:
         reply_markup=inline_gender_keyboard
     )
     await state.set_state(FSMFillForm.fill_gender)
+
+
+@router.callback_query(StateFilter(FSMFillForm.fill_gender), F.data.in_(['male', 'female']))
+async def process_gender_press(callback: CallbackQuery, state: FSMContext) -> None:
+    await state.update_data(gender=callback.data)
+    await callback.message.delete()
+    await callback.message.answer(text=LEXICON_FSM['weight'])
+    await state.set_state(FSMFillForm.fill_weight)
+
+
+
