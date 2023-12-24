@@ -21,5 +21,6 @@ LEXICON_COMMANDS_RU: dict[str, str] = {
 LEXICON_FSM: dict[str, str] = {
     'name': 'What is your name?',
     'age': 'How old are you?',
+    'gender': 'What is your gender?',
     'weight': 'What is your current weight?'
 }

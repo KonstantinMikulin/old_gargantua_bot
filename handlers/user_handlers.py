@@ -5,7 +5,7 @@ from aiogram.fsm.state import default_state
 from aiogram.fsm.context import FSMContext
 
 from lexicon.lexicon import LEXICON_RU, LEXICON_FSM
-from keyboards.keyboards import inline_keyboard
+from keyboards.keyboards import inline_gender_keyboard
 from fsm.fsm import FSMFillForm
 
 router = Router()
@@ -41,4 +41,11 @@ async def process_name_sent(message: Message, state: FSMContext) -> None:
     await state.set_state(FSMFillForm.fill_age)
 
 
-
+@router.message(StateFilter(FSMFillForm.fill_age), lambda x: x.text.isdigit() and 4 <= int(x.text) <= 120)
+async def process_age_sent(message: Message, state: FSMContext) -> None:
+    await state.update_data(age=message.text)
+    await message.answer(
+        text=LEXICON_FSM['gender'],
+        reply_markup=inline_gender_keyboard
+    )
+    await state.set_state(FSMFillForm.fill_gender)
