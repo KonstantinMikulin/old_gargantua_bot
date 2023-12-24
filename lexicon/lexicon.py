@@ -5,7 +5,11 @@ LEXICON_RU: dict[str, str] = {
     '/help': 'Список команд бота:\n'
              '/start - запустить бот\n'
              '/help - список команд\n',
-    '/profile': 'What is your name?',
+    '/profile': 'Let`s fill your profile\n'
+                'If you want to stop filling profile - senf /cancel\n\n'
+                'What is your name?',
+    '/cancel': 'You have stopped FSM\n'
+               'If you want to fill your profile - send /profile',
     'other_answers': 'Я понимаю не все сообщения.\n'
                      '/help - cписок доступных команд'
 }
