@@ -5,6 +5,7 @@ LEXICON_RU: dict[str, str] = {
     '/help': 'Список команд бота:\n'
              '/start - запустить бот\n'
              '/help - список команд\n',
+    '/profile': 'What is your name?',
     'other_answers': 'Я понимаю не все сообщения.\n'
                      '/help - cписок доступных команд'
 }
@@ -14,7 +15,7 @@ LEXICON_COMMANDS_RU: dict[str, str] = {
 }
 
 LEXICON_CALLBACK: dict[str, str] = {
-    'one': 'I cant remember anything',
-    'two': 'Or are you unforgiven too?',
-    'three': 'When it\'s me I can\'t forgive?'
+    'name': 'How old are you?',
+    'age': 'What is your current weight?',
+    'weight': 'Thank you. Your profile was created'
 }
