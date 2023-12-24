@@ -6,7 +6,7 @@ LEXICON_RU: dict[str, str] = {
              '/start - запустить бот\n'
              '/help - список команд\n',
     '/profile': 'Let`s fill your profile\n'
-                'If you want to stop filling profile - senf /cancel\n\n'
+                'If you want to stop filling profile - send /cancel\n\n'
                 'What is your name?',
     '/cancel': 'You have stopped FSM\n'
                'If you want to fill your profile - send /profile',

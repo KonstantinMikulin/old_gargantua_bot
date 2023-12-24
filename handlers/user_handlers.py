@@ -6,6 +6,7 @@ from aiogram.fsm.context import FSMContext
 
 from lexicon.lexicon import LEXICON_RU, LEXICON_CALLBACK
 from keyboards.keyboards import inline_keyboard
+from fsm.fsm import FSMFillForm
 
 router = Router()
 
@@ -22,16 +23,22 @@ async def process_help_cmd(message: Message) -> None:
 
 
 @router.message(Command(commands='profile'), StateFilter(default_state))
-async def process_profile_command(message: Message) -> None:
-    await message.answer(
-        text=LEXICON_RU[message.text]
-    )
+async def process_profile_command(message: Message, state: FSMContext) -> None:
+    await message.answer(text=LEXICON_RU[message.text])
+    await state.set_state(FSMFillForm.fill_name)
 
 
 @router.message(Command(commands='cancel'), ~StateFilter(default_state))
-async def process_cancel_command_state(message: Message, state: FSMContext):
+async def process_cancel_command_state(message: Message, state: FSMContext) -> None:
     await message.answer(text=LEXICON_RU[message.text])
     await state.clear()
+
+
+@router.message(StateFilter(FSMFillForm.fill_name), F.text.isalpha())
+async def process_name_sent(message: Message, state: FSMContext) -> None:
+    await state.update_data(name=message.text)
+    await message.answer(text='How old are you?')
+    await state.set_state(FSMFillForm.fill_age)
 
 
 
