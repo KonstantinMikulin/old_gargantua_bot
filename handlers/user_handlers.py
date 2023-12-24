@@ -65,4 +65,3 @@ async def process_weight_sent(message: Message, state: FSMContext) -> None:
     user_dict[message.from_user.id] = await state.get_data()
     await state.clear()
     await message.answer(text=LEXICON_FSM['profile_done'])
-    print(user_dict)
