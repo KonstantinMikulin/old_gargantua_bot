@@ -65,3 +65,16 @@ async def process_weight_sent(message: Message, state: FSMContext) -> None:
     user_dict[message.from_user.id] = await state.get_data()
     await state.clear()
     await message.answer(text=LEXICON_FSM['profile_done'])
+
+
+@router.message(Command(commands='showdata'), StateFilter(default_state))
+async def process_showdata_sent(message: Message) -> None:
+    if message.from_user.id in user_dict:
+        await message.answer(
+            text=f'Name: {user_dict[message.from_user.id]["name"]}\n'
+                 f'Age: {user_dict[message.from_user.id]["age"]}\n'
+                 f'Gender: {user_dict[message.from_user.id]["gender"]}\n'
+                 f'Weight: {user_dict[message.from_user.id]["weight"]}'
+        )
+    else:
+        await message.answer(text='To fill - /profile')
