@@ -15,11 +15,8 @@ LEXICON_RU: dict[str, str] = {
 }
 
 LEXICON_COMMANDS_RU: dict[str, str] = {
-<<<<<<< HEAD
     '/help': 'How this bot works',
     '/profile': 'Setup you profile',
-=======
-    '/help': 'How this bot works'
 }
 
 LEXICON_FSM: dict[str, str] = {
@@ -28,5 +25,4 @@ LEXICON_FSM: dict[str, str] = {
     'gender': 'What is your gender?',
     'weight': 'What is your current weight?',
     'profile_done': 'Thank you. Yor profile was updated'
->>>>>>> 2fe01fbf698b989239fc72827fb0f74ff86bd51f
 }

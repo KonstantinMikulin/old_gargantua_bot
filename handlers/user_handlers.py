@@ -11,6 +11,7 @@ from fsm.fsm_profile import FSMProfile, user_dict
 router = Router()
 
 
+@router.message(CommandStart())
 async def process_start_cmd(message: Message) -> None:
     await message.answer(text=LEXICON_RU[message.text])
 
