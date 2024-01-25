@@ -35,11 +35,20 @@ async def process_cancel_command_state(message: Message, state: FSMContext) -> N
     await state.clear()
 
 
+# handler if name was sent correct and changing state to fill_age
 @router.message(StateFilter(FSMProfile.fill_name), F.text.isalpha())
 async def process_name_sent(message: Message, state: FSMContext) -> None:
     await state.update_data(name=message.text)
     await message.answer(text=LEXICON_FSM['age'])
     await state.set_state(FSMProfile.fill_age)
+
+
+# handler if name was not correct
+@router.message(StateFilter(FSMProfile.fill_name))
+async def warning_not_name(message: Message):
+    await message.answer(
+        text=LEXICON_FSM['not_name']
+    )
 
 
 @router.message(StateFilter(FSMProfile.fill_age), lambda x: x.text.isdigit() and 4 <= int(x.text) <= 120)

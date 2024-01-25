@@ -24,5 +24,8 @@ LEXICON_FSM: dict[str, str] = {
     'age': 'How old are you?',
     'gender': 'What is your gender?',
     'weight': 'What is your current weight?',
-    'profile_done': 'Thank you. Yor profile was updated'
+    'profile_done': 'Thank you. Yor profile was updated',
+    'not_name': 'You sent not name\n\n'
+                'Send you name please\n'
+                'or send /cancel if you want to stop'
 }
