@@ -70,12 +70,21 @@ async def warning_not_age(message: Message):
     )
 
 
+# handler for choosing gender and switch state to fill_weight
 @router.callback_query(StateFilter(FSMProfile.fill_gender), F.data.in_(['male', 'female']))
 async def process_gender_press(callback: CallbackQuery, state: FSMContext) -> None:
     await state.update_data(gender=callback.data)
     await callback.message.delete()
     await callback.message.answer(text=LEXICON_FSM['weight'])
     await state.set_state(FSMProfile.fill_weight)
+
+
+# handler if button with genders was not pressed
+@router.message(StateFilter(FSMProfile.fill_gender))
+async def warning_not_gender(message: Message):
+    await message.answer(
+        text=LEXICON_FSM['not_gender']
+    )
 
 
 # handler if weight was correct, store data and stop FSM
