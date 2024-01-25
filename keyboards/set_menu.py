@@ -4,7 +4,7 @@ from aiogram.types import BotCommand
 from lexicon.lexicon import LEXICON_COMMANDS_RU
 
 
-# TODO: check how menu will changing. After restarting bot, or after pc shot dawn
+# TODO: check how menu will changing. After restarting bot, or after pc shot down
 async def set_main_menu(bot: Bot):
     main_menu_commands = [
         BotCommand(command=command,

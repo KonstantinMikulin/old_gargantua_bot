@@ -10,8 +10,7 @@ router = Router()
 
 @router.message(CommandStart())
 async def process_start_cmd(message: Message):
-    await message.answer(text=LEXICON_RU['/start'],
-                         reply_markup=create_keyboard(2, 3, 10, 45, 12, 11, 1, 9))
+    await message.answer(text=LEXICON_RU['/start'])
 
 
 @router.message(Command(commands='help'))
@@ -35,7 +34,7 @@ async def process_record_command(message: Message):
     )
 
 
-@router.message(F.text.in_(['Yes', 'No']))
+@router.message(F.text.lower().in_(['yes', 'no']))
 async def process_yes_no(message: Message):
     await message.answer(
         text='OK',
@@ -43,6 +42,7 @@ async def process_yes_no(message: Message):
     )
 
 
+# testing handler for callback_keyboard
 @router.message(Command(commands='call'))
 async def process_url_command(message: Message):
     await message.answer(
