@@ -12,12 +12,12 @@ router = Router()
 
 
 # command for starting bot
-@router.message(CommandStart())
+@router.message(CommandStart(), StateFilter(default_state))
 async def process_start_cmd(message: Message) -> None:
     await message.answer(text=LEXICON_RU[message.text])
 
 
-@router.message(Command(commands='help'))
+@router.message(Command(commands='help'), StateFilter(default_state))
 async def process_help_cmd(message: Message) -> None:
     await message.answer(text=LEXICON_RU[message.text])
     pass
@@ -29,9 +29,18 @@ async def process_profile_command(message: Message, state: FSMContext) -> None:
     await state.set_state(FSMProfile.fill_name)
 
 
+# handler for /cancel when FSM is off
+@router.message(Command(commands='cancel'), StateFilter(default_state))
+async def process_cancel_command(message: Message):
+    await message.answer(
+        text=LEXICON_RU[message.text]
+    )
+
+
+# handler for /cancel when FSM is on
 @router.message(Command(commands='cancel'), ~StateFilter(default_state))
 async def process_cancel_command_state(message: Message, state: FSMContext) -> None:
-    await message.answer(text=LEXICON_RU[message.text])
+    await message.answer(text=LEXICON_FSM[message.text])
     await state.clear()
 
 

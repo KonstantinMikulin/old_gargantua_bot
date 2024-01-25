@@ -8,8 +8,7 @@ LEXICON_RU: dict[str, str] = {
     '/profile': 'Let`s fill your profile\n'
                 'If you want to stop filling profile - send /cancel\n\n'
                 'What is your name?',
-    '/cancel': 'You have stopped FSM\n'
-               'If you want to fill your profile - send /profile',
+    '/cancel': 'Nothing to cancel',
     'other_answers': 'Я понимаю не все сообщения.\n'
                      '/help - cписок доступных команд'
 }
@@ -35,5 +34,7 @@ LEXICON_FSM: dict[str, str] = {
                   'Please send number between 20 and 700\n'
                   'or send /cancel if you want to stop',
     'not_gender': 'Please, use button to choose your gender\n\n'
-                  'or send /cancel if you want to stop'
+                  'or send /cancel if you want to stop',
+    '/cancel': 'You have stopped FSM\n'
+               'If you want to fill your profile - send /profile'
 }
