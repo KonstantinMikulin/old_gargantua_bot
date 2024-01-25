@@ -27,5 +27,8 @@ LEXICON_FSM: dict[str, str] = {
     'profile_done': 'Thank you. Yor profile was updated',
     'not_name': 'You sent not name\n\n'
                 'Send you name please\n'
-                'or send /cancel if you want to stop'
+                'or send /cancel if you want to stop',
+    'not_age': 'You sent not correct age\n\n'
+               'Please send number between 18 and 120\n'
+               'or send /cancel if you want to stop'
 }

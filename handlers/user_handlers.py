@@ -51,7 +51,8 @@ async def warning_not_name(message: Message):
     )
 
 
-@router.message(StateFilter(FSMProfile.fill_age), lambda x: x.text.isdigit() and 4 <= int(x.text) <= 120)
+# handler if age was sent correct and changing state to fill_gender
+@router.message(StateFilter(FSMProfile.fill_age), lambda x: x.text.isdigit() and 18 <= int(x.text) <= 120)
 async def process_age_sent(message: Message, state: FSMContext) -> None:
     await state.update_data(age=message.text)
     await message.answer(
@@ -59,6 +60,14 @@ async def process_age_sent(message: Message, state: FSMContext) -> None:
         reply_markup=inline_gender_keyboard
     )
     await state.set_state(FSMProfile.fill_gender)
+
+
+# handler if age was not correct
+@router.message(StateFilter(FSMProfile.fill_age))
+async def warning_not_age(message: Message):
+    await message.answer(
+        text=LEXICON_FSM['not_age']
+    )
 
 
 @router.callback_query(StateFilter(FSMProfile.fill_gender), F.data.in_(['male', 'female']))
