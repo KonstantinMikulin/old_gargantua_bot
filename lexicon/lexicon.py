@@ -30,5 +30,8 @@ LEXICON_FSM: dict[str, str] = {
                 'or send /cancel if you want to stop',
     'not_age': 'You sent not correct age\n\n'
                'Please send number between 18 and 120\n'
-               'or send /cancel if you want to stop'
+               'or send /cancel if you want to stop',
+    'not_weight': 'You sent not correct weight\n\n'
+                  'Please send number between 20 and 700\n'
+                  'or send /cancel if you want to stop'
 }

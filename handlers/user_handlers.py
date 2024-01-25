@@ -78,12 +78,21 @@ async def process_gender_press(callback: CallbackQuery, state: FSMContext) -> No
     await state.set_state(FSMProfile.fill_weight)
 
 
+# handler if weight was correct, store data and stop FSM
 @router.message(StateFilter(FSMProfile.fill_weight), lambda x: x.text.isdigit() and 20 <= int(x.text) <= 700)
 async def process_weight_sent(message: Message, state: FSMContext) -> None:
     await state.update_data(weight=message.text)
     user_dict[message.from_user.id] = await state.get_data()
     await state.clear()
     await message.answer(text=LEXICON_FSM['profile_done'])
+
+
+# handler if weight was not correct
+@router.message(StateFilter(FSMProfile.fill_weight))
+async def warning_not_weight(message: Message):
+    await message.answer(
+        text=LEXICON_FSM['not_weight']
+    )
 
 
 @router.message(Command(commands='showdata'), StateFilter(default_state))
