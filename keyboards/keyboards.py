@@ -2,53 +2,18 @@ from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton,
                            InlineKeyboardButton, InlineKeyboardMarkup)
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
-# Reply keyboard buttons
-button_yes = KeyboardButton(text='Yes')
-button_no = KeyboardButton(text='No')
 
-yes_no_kb_builder = ReplyKeyboardBuilder()
-yes_no_kb_builder.row(button_yes, button_no, width=2)
-
-yes_no_keyboard: ReplyKeyboardMarkup = yes_no_kb_builder.as_markup(
-    one_time_keyboard=True,
-    resize_keyboard=True,
-    input_field_placeholder='Yes please'
+# FSM inline keyboard
+inline_button_male = InlineKeyboardButton(
+    text='Male',
+    callback_data='male'
+)
+inline_button_female = InlineKeyboardButton(
+    text='Female',
+    callback_data='female'
 )
 
-# Inline keyboard buttons
+kb_builder = InlineKeyboardBuilder()
+kb_builder.row(inline_button_male, inline_button_female)
 
-inline_button_1 = InlineKeyboardButton(text='Вес', callback_data='one')
-inline_button_2 = InlineKeyboardButton(text='Замеры', callback_data='two')
-
-inline_kb_builder = InlineKeyboardBuilder()
-inline_kb_builder.row(inline_button_1, inline_button_2)
-
-inline_keyboard: InlineKeyboardMarkup = inline_kb_builder.as_markup()
-
-# Callback buttons
-callback_button_1 = InlineKeyboardButton(
-    text='BUTTON 1',
-    callback_data='button_1 pressed'
-)
-
-callback_button_2 = InlineKeyboardButton(
-    text='BUTTON 2',
-    callback_data='button_2 pressed'
-)
-
-callback_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[[callback_button_1], [callback_button_2]]
-)
-
-
-# function for creating keyboard
-def create_keyboard(*args: int):
-    kb_builder = InlineKeyboardBuilder()
-
-    buttons = []
-    for button in sorted(args):
-        buttons.append(InlineKeyboardButton(text=str(button), callback_data=str(button)))
-
-    kb_builder.row(*buttons, width=3)
-
-    return kb_builder.as_markup()
+inline_gender_keyboard = kb_builder.as_markup()
