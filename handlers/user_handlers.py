@@ -20,7 +20,6 @@ async def process_start_cmd(message: Message) -> None:
 @router.message(Command(commands='help'), StateFilter(default_state))
 async def process_help_cmd(message: Message) -> None:
     await message.answer(text=LEXICON_RU[message.text])
-    pass
 
 
 @router.message(Command(commands='profile'), StateFilter(default_state))

@@ -1,7 +1,8 @@
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.fsm.storage.redis import Redis, RedisStorage
 
-storage = MemoryStorage()
+redis = Redis(host='localhost')
+storage = RedisStorage(redis=redis)
 
 user_dict: dict[int, dict[str, str | int]] = {}
 
